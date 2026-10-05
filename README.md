@@ -10,4 +10,3 @@ This repository contains HTML, CSS, and JavaScript assignments organized by week
 
 Site: https://zeozila.github.io/web-pro/
 
-Enabled in Settings → Pages → Deploy from a branch (main, root folder)
