@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">🏠 Home</a>
+        <a href="index.html">Week 3</a>
+      </nav>
+
+      <div class="card">
+        <h1>Quiz App</h1>
+        <div id="quiz"></div>
+        <button id="submitQuiz">Check Score</button>
+        <p id="result" class="small"></p>
+      </div>
+    </div>
+
+    <script>
+      const questions = [
+        {
+          question: 'Which language is used to style a web page?',
+          choices: ['HTML', 'CSS', 'JavaScript', 'Python'],
+          answer: 'CSS'
+        },
+        {
+          question: 'What does DOM stand for?',
+          choices: ['Document Object Model', 'Data Object Module', 'Dynamic Output Method', 'Design Option Matrix'],
+          answer: 'Document Object Model'
+        },
+        {
+          question: 'Which method saves data in browser storage?',
+          choices: ['localStorage.setItem()', 'saveToBrowser()', 'browserStore()', 'setData()'],
+          answer: 'localStorage.setItem()'
+        }
+      ];
+
+      const quizContainer = document.getElementById('quiz');
+      const result = document.getElementById('result');
+      const submitButton = document.getElementById('submitQuiz');
+
+      function renderQuiz() {
+        questions.forEach((q, index) => {
+          const questionDiv = document.createElement('div');
+          questionDiv.className = 'quiz-question';
+          questionDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3>`;
+
+          const list = document.createElement('ul');
+          list.className = 'choice-list';
+
+          q.choices.forEach(choice => {
+            const item = document.createElement('li');
+            item.innerHTML = `
+              <label>
+                <input type="radio" name="question${index}" value="${choice}" />
+                ${choice}
+              </label>
+            `;
+            list.appendChild(item);
+          });
+
+          questionDiv.appendChild(list);
+          quizContainer.appendChild(questionDiv);
+        });
+      }
+
+      submitButton.addEventListener('click', () => {
+        let score = 0;
+
+        questions.forEach((q, index) => {
+          const selected = document.querySelector(`input[name="question${index}"]:checked`);
+          if (selected && selected.value === q.answer) {
+            score += 1;
+          }
+        });
+
+        result.textContent = `Your score: ${score}/${questions.length}`;
+      });
+
+      renderQuiz();
+    </script>
+  </body>
+</html>

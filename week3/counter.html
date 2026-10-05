@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Counter App</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">🏠 Home</a>
+        <a href="index.html">Week 3</a>
+      </nav>
+
+      <div class="card">
+        <h1>Counter App</h1>
+        <p>Use the buttons to increase or decrease the number.</p>
+        <div class="counter-box">Count: <span id="count">0</span></div>
+        <button onclick="change(1)">+ Add</button>
+        <button onclick="change(-1)" class="secondary">- Subtract</button>
+        <button onclick="resetCounter()" class="secondary">Reset</button>
+      </div>
+    </div>
+
+    <script>
+      const counterElement = document.getElementById('count');
+      let count = Number(localStorage.getItem('counterValue')) || 0;
+
+      function renderCounter() {
+        counterElement.textContent = count;
+        localStorage.setItem('counterValue', String(count));
+      }
+
+      function change(amount) {
+        count += amount;
+        renderCounter();
+      }
+
+      function resetCounter() {
+        count = 0;
+        renderCounter();
+      }
+
+      renderCounter();
+    </script>
+  </body>
+</html>

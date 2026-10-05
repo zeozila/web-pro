@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">🏠 Home</a>
+        <a href="index.html">Week 3</a>
+      </nav>
+
+      <div class="card">
+        <h1>To-Do List</h1>
+        <form id="todoForm">
+          <label for="todoInput">New Task</label>
+          <input type="text" id="todoInput" placeholder="Add a task" />
+          <button type="submit">Add</button>
+        </form>
+
+        <ul id="todoList" class="todo-list"></ul>
+      </div>
+    </div>
+
+    <script>
+      const form = document.getElementById('todoForm');
+      const input = document.getElementById('todoInput');
+      const list = document.getElementById('todoList');
+
+      let tasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+
+      function saveTasks() {
+        localStorage.setItem('todoTasks', JSON.stringify(tasks));
+      }
+
+      function renderTasks() {
+        list.innerHTML = '';
+
+        tasks.forEach((task, index) => {
+          const li = document.createElement('li');
+          li.className = 'todo-item';
+          li.innerHTML = `
+            <span>${task}</span>
+            <button type="button" class="secondary" data-index="${index}">Delete</button>
+          `;
+          list.appendChild(li);
+        });
+
+        document.querySelectorAll('button[data-index]').forEach(button => {
+          button.addEventListener('click', () => {
+            const idx = Number(button.dataset.index);
+            tasks.splice(idx, 1);
+            saveTasks();
+            renderTasks();
+          });
+        });
+      }
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const value = input.value.trim();
+
+        if (value) {
+          tasks.push(value);
+          saveTasks();
+          renderTasks();
+          input.value = '';
+          input.focus();
+        }
+      });
+
+      renderTasks();
+    </script>
+  </body>
+</html>
