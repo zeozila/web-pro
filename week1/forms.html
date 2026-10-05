@@ -3,46 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 1: Forms</title>
+    <title>Week 1: HTML Forms</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 1</a>
       </nav>
 
-      <div class="card">
-        <h1>Week 1 — HTML Forms</h1>
-        <p>Forms let users send information to the website or server.</p>
+      <div class="card-box">
+        <h1>HTML Forms</h1>
+        <p>Forms let users send information to the website.</p>
       </div>
 
-      <div class="card">
+      <div class="card-box">
         <form>
-          <label for="name">Your name</label>
-          <input type="text" id="name" placeholder="Enter your name" />
+          <label for="name">Your name:</label>
+          <input type="text" id="name" placeholder="Enter name" />
 
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="you@example.com" />
+          <label for="email">Email:</label>
+          <input type="email" id="email" />
 
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" placeholder="Website feedback" />
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" />
 
-          <label for="message">Message</label>
-          <textarea id="message" rows="5" placeholder="Write your message here..."></textarea>
-
-          <label for="major">Major</label>
-          <select id="major">
-            <option>Computer Engineering</option>
-            <option>Software Engineering</option>
-            <option>Business</option>
-            <option>Other</option>
-          </select>
-
-          <label>
-            <input type="checkbox" /> Subscribe to updates
-          </label>
+          <label for="message">Message:</label>
+          <textarea id="message" rows="5"></textarea>
 
           <button type="submit">Submit</button>
         </form>

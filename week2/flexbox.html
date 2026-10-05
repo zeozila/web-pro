@@ -3,34 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flexbox Layout</title>
+    <title>Week 2: Flexbox Layout</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 2</a>
       </nav>
 
-      <div class="card">
-        <h1>Week 2 — Flexbox Layout</h1>
-        <p>Flexbox is useful for arranging items in rows and columns.</p>
+      <div class="card-box">
+        <h1>Flexbox Layout</h1>
+        <p>Flexbox is the most useful layout tool.</p>
       </div>
 
-      <div class="container">
-        <div class="card">
-          <h3>Week 1</h3>
-          <p>HTML</p>
+      <div class="card-box">
+        <h2>Example: Three Cards</h2>
+        <div class="task-list">
+          <div class="task-card" style="width: 180px;">
+            <h3>Week 1</h3>
+            <p>HTML</p>
+          </div>
+          <div class="task-card" style="width: 180px;">
+            <h3>Week 2</h3>
+            <p>CSS</p>
+          </div>
+          <div class="task-card" style="width: 180px;">
+            <h3>Week 3</h3>
+            <p>JavaScript</p>
+          </div>
         </div>
-        <div class="card">
-          <h3>Week 2</h3>
-          <p>CSS</p>
-        </div>
-        <div class="card">
-          <h3>Week 3</h3>
-          <p>JavaScript</p>
-        </div>
+      </div>
+
+      <div class="card-box">
+        <h2>How it works</h2>
+        <p><strong>Parent:</strong> display: flex; - controls HOW children are arranged</p>
+        <p><strong>Child:</strong> flex: 1; - controls HOW MUCH space each child takes</p>
       </div>
     </div>
   </body>

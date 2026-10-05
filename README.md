@@ -1,29 +1,13 @@
 # web-pro
 
-This repository contains a simple GitHub Pages portfolio for a Web Programming course. It includes examples for HTML, CSS, and JavaScript organized by week.
+Web Programming Portfolio - Gachon University K0126002
 
-## Project structure
+Student: Munkhbold Bilguun (202537630)
 
-- `index.html` — master portfolio page
-- `style.css` — shared styling for the site
-- `week1/` — HTML tasks
-- `week2/` — CSS tasks
-- `week3/` — JavaScript tasks
+This repository contains HTML, CSS, and JavaScript assignments organized by week.
 
 ## GitHub Pages
 
-After pushing this repository to GitHub, enable GitHub Pages from:
+Site: https://zeozila.github.io/web-pro/
 
-- Settings → Pages
-- Source: Deploy from a branch
-- Branch: `main` / folder: `/` (root)
-
-Then your site will be available at:
-
-- `https://username.github.io/web-pro/`
-
-## Notes
-
-- The repo should be public for GitHub Pages.
-- Keep filenames lowercase with hyphens when needed.
-- The main page must be named `index.html`.
+Enabled in Settings → Pages → Deploy from a branch (main, root folder)

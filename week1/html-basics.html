@@ -3,60 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 1: HTML Fundamentals</title>
+    <title>Week 1: HTML Basics</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 1</a>
       </nav>
 
-      <div class="card">
-        <h1>Week 1 — HTML Fundamentals</h1>
-        <p>HTML defines the structure of a page. Every element is a tag, and we use tags to organize content.</p>
+      <div class="card-box">
+        <h1>HTML Basics</h1>
+        <p>HTML defines the structure of a page. Every element is a tag: &lt;tag&gt;content&lt;/tag&gt;</p>
       </div>
 
-      <div class="card">
-        <h2>1. Basic page structure</h2>
-        <pre>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Page title&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello, world!&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</pre>
-      </div>
-
-      <div class="card">
-        <h2>2. Headings, paragraphs, and links</h2>
+      <div class="card-box">
+        <h2>Headings and Paragraphs</h2>
         <h1>Main Title</h1>
         <h2>Section Title</h2>
-        <p>This is a paragraph with a <a href="https://google.com">link to Google</a>.</p>
+        <h3>Sub-section</h3>
+        <p>This is a paragraph. HTML ignores extra spaces and line breaks.</p>
       </div>
 
-      <div class="card">
-        <h2>3. Lists</h2>
+      <div class="card-box">
+        <h2>Links and Images</h2>
+        <p><a href="https://google.com">Link to Google</a></p>
+        <p>&lt;img src="image.jpg" alt="Description"&gt;</p>
+      </div>
+
+      <div class="card-box">
+        <h2>Lists</h2>
+        <h3>Unordered (bullets)</h3>
         <ul>
           <li>HTML</li>
           <li>CSS</li>
           <li>JavaScript</li>
         </ul>
-
+        <h3>Ordered (numbered)</h3>
         <ol>
-          <li>Create the repo</li>
-          <li>Write the page</li>
+          <li>Create repo</li>
+          <li>Write code</li>
           <li>Push to GitHub</li>
         </ol>
       </div>
 
-      <div class="card">
-        <h2>4. Table example</h2>
-        <table>
+      <div class="card-box">
+        <h2>Table</h2>
+        <table border="1">
           <thead>
             <tr>
               <th>Name</th>
@@ -64,10 +58,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Alice</td><td>95</td></tr>
-            <tr><td>Bob</td><td>88</td></tr>
+            <tr>
+              <td>Alice</td>
+              <td>95</td>
+            </tr>
+            <tr>
+              <td>Bob</td>
+              <td>88</td>
+            </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="card-box">
+        <h2>Div and Span</h2>
+        <p>&lt;div&gt; is a block container (stacks vertically)</p>
+        <p>&lt;span&gt; is inline (stays in the line)</p>
       </div>
     </div>
   </body>

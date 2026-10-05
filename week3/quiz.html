@@ -3,86 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz App</title>
+    <title>Week 3: Quiz App</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 3</a>
       </nav>
 
-      <div class="card">
+      <div class="card-box">
         <h1>Quiz App</h1>
-        <div id="quiz"></div>
-        <button id="submitQuiz">Check Score</button>
-        <p id="result" class="small"></p>
+
+        <div class="quiz-question">
+          <h3>1. Which language is used to style a web page?</h3>
+          <ul class="choice-list">
+            <li><label><input type="radio" name="q1" value="CSS" /> CSS</label></li>
+            <li><label><input type="radio" name="q1" value="HTML" /> HTML</label></li>
+            <li><label><input type="radio" name="q1" value="JavaScript" /> JavaScript</label></li>
+          </ul>
+        </div>
+
+        <div class="quiz-question">
+          <h3>2. What does DOM stand for?</h3>
+          <ul class="choice-list">
+            <li><label><input type="radio" name="q2" value="Document Object Model" /> Document Object Model</label></li>
+            <li><label><input type="radio" name="q2" value="Data Object Module" /> Data Object Module</label></li>
+            <li><label><input type="radio" name="q2" value="Design Output Method" /> Design Output Method</label></li>
+          </ul>
+        </div>
+
+        <div class="quiz-question">
+          <h3>3. Which method saves data in browser storage?</h3>
+          <ul class="choice-list">
+            <li><label><input type="radio" name="q3" value="localStorage.setItem()" /> localStorage.setItem()</label></li>
+            <li><label><input type="radio" name="q3" value="saveToBrowser()" /> saveToBrowser()</label></li>
+            <li><label><input type="radio" name="q3" value="setData()" /> setData()</label></li>
+          </ul>
+        </div>
+
+        <button onclick="checkScore()">Check Score</button>
+        <p id="result"></p>
       </div>
     </div>
 
     <script>
-      const questions = [
-        {
-          question: 'Which language is used to style a web page?',
-          choices: ['HTML', 'CSS', 'JavaScript', 'Python'],
-          answer: 'CSS'
-        },
-        {
-          question: 'What does DOM stand for?',
-          choices: ['Document Object Model', 'Data Object Module', 'Dynamic Output Method', 'Design Option Matrix'],
-          answer: 'Document Object Model'
-        },
-        {
-          question: 'Which method saves data in browser storage?',
-          choices: ['localStorage.setItem()', 'saveToBrowser()', 'browserStore()', 'setData()'],
-          answer: 'localStorage.setItem()'
-        }
-      ];
-
-      const quizContainer = document.getElementById('quiz');
-      const result = document.getElementById('result');
-      const submitButton = document.getElementById('submitQuiz');
-
-      function renderQuiz() {
-        questions.forEach((q, index) => {
-          const questionDiv = document.createElement('div');
-          questionDiv.className = 'quiz-question';
-          questionDiv.innerHTML = `<h3>${index + 1}. ${q.question}</h3>`;
-
-          const list = document.createElement('ul');
-          list.className = 'choice-list';
-
-          q.choices.forEach(choice => {
-            const item = document.createElement('li');
-            item.innerHTML = `
-              <label>
-                <input type="radio" name="question${index}" value="${choice}" />
-                ${choice}
-              </label>
-            `;
-            list.appendChild(item);
-          });
-
-          questionDiv.appendChild(list);
-          quizContainer.appendChild(questionDiv);
-        });
-      }
-
-      submitButton.addEventListener('click', () => {
+      function checkScore() {
         let score = 0;
 
-        questions.forEach((q, index) => {
-          const selected = document.querySelector(`input[name="question${index}"]:checked`);
-          if (selected && selected.value === q.answer) {
-            score += 1;
-          }
-        });
+        const q1 = document.querySelector('input[name="q1"]:checked');
+        const q2 = document.querySelector('input[name="q2"]:checked');
+        const q3 = document.querySelector('input[name="q3"]:checked');
 
-        result.textContent = `Your score: ${score}/${questions.length}`;
-      });
+        if (q1 && q1.value === 'CSS') score++;
+        if (q2 && q2.value === 'Document Object Model') score++;
+        if (q3 && q3.value === 'localStorage.setItem()') score++;
 
-      renderQuiz();
+        document.getElementById('result').textContent = 'Your score: ' + score + '/3';
+      }
     </script>
   </body>
 </html>

@@ -3,21 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To-Do List</title>
+    <title>Week 3: To-Do List</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 3</a>
       </nav>
 
-      <div class="card">
+      <div class="card-box">
         <h1>To-Do List</h1>
+        <p>Add tasks and they will be saved in your browser.</p>
+
         <form id="todoForm">
-          <label for="todoInput">New Task</label>
-          <input type="text" id="todoInput" placeholder="Add a task" />
+          <label for="todoInput">Add a task:</label>
+          <input type="text" id="todoInput" placeholder="Enter task" />
           <button type="submit">Add</button>
         </form>
 
@@ -30,45 +32,38 @@
       const input = document.getElementById('todoInput');
       const list = document.getElementById('todoList');
 
-      let tasks = JSON.parse(localStorage.getItem('todoTasks')) || [];
+      let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
       function saveTasks() {
-        localStorage.setItem('todoTasks', JSON.stringify(tasks));
+        localStorage.setItem('tasks', JSON.stringify(tasks));
       }
 
       function renderTasks() {
         list.innerHTML = '';
 
-        tasks.forEach((task, index) => {
+        for (let i = 0; i < tasks.length; i++) {
           const li = document.createElement('li');
           li.className = 'todo-item';
-          li.innerHTML = `
-            <span>${task}</span>
-            <button type="button" class="secondary" data-index="${index}">Delete</button>
-          `;
+          li.innerHTML = '<span>' + tasks[i] + '</span><button class="secondary" onclick="deleteTask(' + i + ')">Delete</button>';
           list.appendChild(li);
-        });
-
-        document.querySelectorAll('button[data-index]').forEach(button => {
-          button.addEventListener('click', () => {
-            const idx = Number(button.dataset.index);
-            tasks.splice(idx, 1);
-            saveTasks();
-            renderTasks();
-          });
-        });
+        }
       }
 
-      form.addEventListener('submit', event => {
-        event.preventDefault();
-        const value = input.value.trim();
+      function deleteTask(index) {
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+      }
 
-        if (value) {
-          tasks.push(value);
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const taskText = input.value;
+
+        if (taskText) {
+          tasks.push(taskText);
           saveTasks();
           renderTasks();
           input.value = '';
-          input.focus();
         }
       });
 

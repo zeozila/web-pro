@@ -3,46 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Counter App</title>
+    <title>Week 3: Counter App</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <div class="page-content">
       <nav>
-        <a href="../index.html">🏠 Home</a>
+        <a href="../index.html">Home</a>
         <a href="index.html">Week 3</a>
       </nav>
 
-      <div class="card">
+      <div class="card-box">
         <h1>Counter App</h1>
         <p>Use the buttons to increase or decrease the number.</p>
-        <div class="counter-box">Count: <span id="count">0</span></div>
+        <h2>Count: <span id="count">0</span></h2>
         <button onclick="change(1)">+ Add</button>
         <button onclick="change(-1)" class="secondary">- Subtract</button>
-        <button onclick="resetCounter()" class="secondary">Reset</button>
+        <button onclick="reset()">Reset</button>
       </div>
     </div>
 
     <script>
-      const counterElement = document.getElementById('count');
-      let count = Number(localStorage.getItem('counterValue')) || 0;
-
-      function renderCounter() {
-        counterElement.textContent = count;
-        localStorage.setItem('counterValue', String(count));
-      }
+      let count = 0;
 
       function change(amount) {
-        count += amount;
-        renderCounter();
+        count = count + amount;
+        document.getElementById('count').textContent = count;
       }
 
-      function resetCounter() {
+      function reset() {
         count = 0;
-        renderCounter();
+        document.getElementById('count').textContent = 0;
       }
-
-      renderCounter();
     </script>
   </body>
 </html>
