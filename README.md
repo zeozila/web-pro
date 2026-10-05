@@ -9,4 +9,3 @@ This repository contains HTML, CSS, and JavaScript assignments organized by week
 ## GitHub Pages
 
 Site: https://zeozila.github.io/web-pro/
-
