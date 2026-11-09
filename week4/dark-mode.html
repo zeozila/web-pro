@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4: Dark Mode Card</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      .profile-card {
+        width: 260px;
+        margin: 20px auto;
+        padding: 24px;
+        text-align: center;
+        background: #f0f4ff;
+        border: 2px solid #c8d4f0;
+        border-radius: 16px;
+        transition: all 0.3s;
+      }
+
+      .profile-card.dark {
+        background: #1a2340;
+        border-color: #3a4a70;
+        color: white;
+      }
+
+      .profile-card.dark p {
+        color: #c8d4f0;
+      }
+
+      .avatar {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 12px;
+        border-radius: 50%;
+        background: #1a56db;
+        color: white;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 70px;
+      }
+
+      #toggle-btn {
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Week 4</a>
+      </nav>
+
+      <div class="card-box">
+        <h1>E2 — Dark Mode Toggle Card</h1>
+        <p>The button switches the card between light and dark mode.</p>
+
+        <div id="card" class="profile-card">
+          <div class="avatar">MB</div>
+          <h2>Munkhbold Bilguun</h2>
+          <p>Web Programming Student</p>
+          <button id="toggle-btn">🌙 Dark Mode</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const card = document.querySelector('#card');
+      const toggleBtn = document.querySelector('#toggle-btn');
+
+      toggleBtn.addEventListener('click', () => {
+        card.classList.toggle('dark');
+
+        if (card.classList.contains('dark')) {
+          toggleBtn.textContent = '☀️ Light Mode';
+        } else {
+          toggleBtn.textContent = '🌙 Dark Mode';
+        }
+      });
+    </script>
+  </body>
+</html>

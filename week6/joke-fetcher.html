@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 6: Random Joke Fetcher</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      .joke-box {
+        min-height: 90px;
+      }
+
+      #punchline {
+        color: #7c3aed;
+        font-style: italic;
+      }
+
+      .spinner {
+        display: none;
+        width: 32px;
+        height: 32px;
+        margin: 12px 0;
+        border: 4px solid #c8d4f0;
+        border-top-color: #1a56db;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      #status.error {
+        color: #dc2626;
+        font-weight: bold;
+      }
+
+      #fav-list .todo-item span {
+        margin-right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Week 6</a>
+      </nav>
+
+      <div class="card-box">
+        <h1>Random Joke Fetcher</h1>
+        <p>Click the button to get a random joke from the Official Joke API.</p>
+
+        <button id="load-btn">Load Joke</button>
+        <button id="save-btn" class="secondary" disabled>⭐ Save Favourite</button>
+
+        <div class="spinner" id="spinner"></div>
+        <p id="status"></p>
+
+        <div class="demo-box joke-box">
+          <p id="setup"><strong>Your joke will show up here.</strong></p>
+          <p id="punchline"></p>
+        </div>
+      </div>
+
+      <div class="card-box">
+        <h2>My Favourite Jokes</h2>
+        <p class="small">Saved in localStorage, so they are still here after refreshing.</p>
+        <ul id="fav-list" class="todo-list"></ul>
+        <p id="no-favs" class="small">No favourites saved yet.</p>
+      </div>
+    </div>
+
+    <script>
+      const API_URL = 'https://official-joke-api.appspot.com/random_joke';
+
+      const loadBtn = document.getElementById('load-btn');
+      const saveBtn = document.getElementById('save-btn');
+      const spinner = document.getElementById('spinner');
+      const statusText = document.getElementById('status');
+      const setupText = document.getElementById('setup');
+      const punchlineText = document.getElementById('punchline');
+      const favList = document.getElementById('fav-list');
+      const noFavs = document.getElementById('no-favs');
+
+      let currentJoke = null;
+      let favourites = JSON.parse(localStorage.getItem('favJokes')) || [];
+
+      async function loadJoke() {
+        statusText.textContent = 'Loading…';
+        statusText.classList.remove('error');
+        spinner.style.display = 'block';
+        loadBtn.disabled = true;
+        saveBtn.disabled = true;
+
+        try {
+          const res = await fetch(API_URL);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+          const data = await res.json();
+          currentJoke = { setup: data.setup, punchline: data.punchline };
+
+          setupText.textContent = data.setup;
+          punchlineText.textContent = data.punchline;
+          statusText.textContent = '';
+          saveBtn.disabled = false;
+        } catch (err) {
+          statusText.textContent = 'Sorry, could not load a joke right now. Please try again. (' + err.message + ')';
+          statusText.classList.add('error');
+        } finally {
+          spinner.style.display = 'none';
+          loadBtn.disabled = false;
+        }
+      }
+
+      function showFavourites() {
+        favList.innerHTML = '';
+
+        favourites.forEach((joke, i) => {
+          const li = document.createElement('li');
+          li.className = 'todo-item';
+
+          const span = document.createElement('span');
+          span.textContent = joke.setup + ' — ' + joke.punchline;
+
+          const removeBtn = document.createElement('button');
+          removeBtn.textContent = 'Remove';
+          removeBtn.className = 'secondary';
+          removeBtn.dataset.index = i;
+
+          li.appendChild(span);
+          li.appendChild(removeBtn);
+          favList.appendChild(li);
+        });
+
+        noFavs.style.display = favourites.length === 0 ? 'block' : 'none';
+      }
+
+      function saveFavourite() {
+        if (!currentJoke) return;
+
+        const alreadySaved = favourites.some((j) => j.setup === currentJoke.setup);
+        if (!alreadySaved) {
+          favourites.push(currentJoke);
+          localStorage.setItem('favJokes', JSON.stringify(favourites));
+          showFavourites();
+        }
+        saveBtn.disabled = true;
+      }
+
+      favList.addEventListener('click', (e) => {
+        if (e.target.dataset.index !== undefined) {
+          favourites.splice(Number(e.target.dataset.index), 1);
+          localStorage.setItem('favJokes', JSON.stringify(favourites));
+          showFavourites();
+        }
+      });
+
+      loadBtn.addEventListener('click', loadJoke);
+      saveBtn.addEventListener('click', saveFavourite);
+
+      showFavourites();
+    </script>
+  </body>
+</html>

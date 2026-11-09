@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 9 - Munkhbold Bilguun</title>
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">🏠 Home</a>
+        <a href="../week6/index.html">Previous</a>
+      </nav>
+
+      <div class="card-box">
+        <h1>Week 9 — Git, GitHub &amp; GitHub Pages</h1>
+        <p><strong>Name:</strong> Munkhbold Bilguun</p>
+        <p><strong>Student ID:</strong> 202537630</p>
+        <p><strong>Course:</strong> Web Programming (K0126002), Gachon University</p>
+        <p><strong>Date:</strong> November 9, 2026</p>
+      </div>
+
+      <div class="card-box">
+        <h2>Monday — Git basics</h2>
+        <p>Git saves the history of my project on my computer. GitHub keeps a copy online so I can share it.</p>
+
+        <table>
+          <tr>
+            <th>Command</th>
+            <th>What it does</th>
+          </tr>
+          <tr><td>git init</td><td>Starts a new repository (makes the .git folder)</td></tr>
+          <tr><td>git status</td><td>Shows untracked, changed and staged files</td></tr>
+          <tr><td>git add .</td><td>Puts changes in the staging area</td></tr>
+          <tr><td>git commit -m "..."</td><td>Saves a snapshot with a message</td></tr>
+          <tr><td>git log --oneline</td><td>Shows the commit history</td></tr>
+          <tr><td>git checkout -b name</td><td>Makes a new branch and switches to it</td></tr>
+          <tr><td>git merge name</td><td>Joins a branch into the current one</td></tr>
+          <tr><td>git push / git pull</td><td>Uploads to / downloads from GitHub</td></tr>
+        </table>
+
+        <p class="small">Working directory → git add → staging area → git commit → local repo → git push → GitHub</p>
+      </div>
+
+      <div class="card-box">
+        <h2>Friday — GitHub Pages</h2>
+        <p>This portfolio is deployed with GitHub Pages (Settings → Pages → Deploy from a branch → main → / (root)).</p>
+        <ul>
+          <li>index.html has to be in the root of the repo</li>
+          <li>All links use relative paths like <code>../style.css</code>, not <code>/style.css</code></li>
+          <li>File names are lowercase because the server is case-sensitive</li>
+          <li>There is a custom <a href="../404.html">404 page</a> for links that don't exist</li>
+        </ul>
+        <a class="link-button" href="../this-page-does-not-exist.html">Test the 404 page</a>
+      </div>
+    </div>
+  </body>
+</html>

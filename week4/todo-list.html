@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4: To-Do List</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      .add-row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .add-row input,
+      .add-row button {
+        margin-top: 0;
+      }
+
+      .del-btn {
+        background: #dc2626;
+      }
+
+      .del-btn:hover {
+        background: #b91c1c;
+      }
+
+      #empty-msg {
+        text-align: center;
+        color: #9ca3af;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Week 4</a>
+      </nav>
+
+      <div class="card-box">
+        <h1>E3 — My To-Do List</h1>
+        <p>Type a task and press Enter or click Add. Click ✕ to remove it.</p>
+
+        <div class="add-row">
+          <input id="todo-input" type="text" placeholder="Add a task..." />
+          <button id="add-btn">+ Add</button>
+        </div>
+
+        <ul id="todo-list" class="todo-list"></ul>
+        <p id="empty-msg">No tasks yet! Add one above.</p>
+      </div>
+    </div>
+
+    <script>
+      const input = document.querySelector('#todo-input');
+      const addBtn = document.querySelector('#add-btn');
+      const list = document.querySelector('#todo-list');
+      const emptyMsg = document.querySelector('#empty-msg');
+
+      function updateEmpty() {
+        if (list.children.length === 0) {
+          emptyMsg.style.display = 'block';
+        } else {
+          emptyMsg.style.display = 'none';
+        }
+      }
+
+      function addTask() {
+        const text = input.value.trim();
+        if (text === '') return;
+
+        const li = document.createElement('li');
+        li.className = 'todo-item';
+
+        // textContent instead of innerHTML so typed HTML is not run (XSS)
+        const span = document.createElement('span');
+        span.textContent = text;
+
+        const delBtn = document.createElement('button');
+        delBtn.className = 'del-btn';
+        delBtn.textContent = '✕';
+
+        li.appendChild(span);
+        li.appendChild(delBtn);
+        list.appendChild(li);
+
+        input.value = '';
+        updateEmpty();
+      }
+
+      addBtn.addEventListener('click', addTask);
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addTask();
+      });
+
+      // one listener on the list handles every delete button
+      list.addEventListener('click', (e) => {
+        if (e.target.classList.contains('del-btn')) {
+          e.target.closest('li').remove();
+          updateEmpty();
+        }
+      });
+
+      updateEmpty();
+    </script>
+  </body>
+</html>

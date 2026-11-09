@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 4: Live Search</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+      #search {
+        max-width: 100%;
+        margin-bottom: 14px;
+        border: 2px solid #1a56db;
+      }
+
+      .student {
+        padding: 10px 14px;
+        margin-bottom: 6px;
+        background: #f0f4ff;
+        border: 1px solid #c8d4f0;
+        border-radius: 8px;
+      }
+
+      mark {
+        background: #f7df1e;
+        border-radius: 3px;
+      }
+
+      #no-results {
+        display: none;
+        text-align: center;
+        color: #9ca3af;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="index.html">Week 4</a>
+      </nav>
+
+      <div class="card-box">
+        <h1>E4 — Student Search</h1>
+        <p>Start typing a name. The list filters while you type.</p>
+
+        <input id="search" type="text" placeholder="Search students..." />
+
+        <div id="student-list">
+          <div class="student" data-name="Kim Jisoo" data-major="Web Programming">Kim Jisoo — Web Programming</div>
+          <div class="student" data-name="Park Minjun" data-major="Computer Science">Park Minjun — Computer Science</div>
+          <div class="student" data-name="Lee Sooyeon" data-major="Software Engineering">Lee Sooyeon — Software Engineering</div>
+          <div class="student" data-name="Choi Hyunwoo" data-major="Artificial Intelligence">Choi Hyunwoo — Artificial Intelligence</div>
+          <div class="student" data-name="Jung Yuna" data-major="Data Science">Jung Yuna — Data Science</div>
+          <div class="student" data-name="Kang Seojun" data-major="Web Programming">Kang Seojun — Web Programming</div>
+        </div>
+
+        <p id="no-results">No students found.</p>
+      </div>
+    </div>
+
+    <script>
+      const searchInput = document.querySelector('#search');
+      const students = document.querySelectorAll('.student');
+      const noResults = document.querySelector('#no-results');
+
+      searchInput.addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        let visible = 0;
+
+        students.forEach((student) => {
+          const name = student.dataset.name;
+          const major = student.dataset.major;
+          const index = name.toLowerCase().indexOf(term);
+
+          if (index !== -1) {
+            student.style.display = '';
+            visible++;
+
+            if (term === '') {
+              student.textContent = name + ' — ' + major;
+            } else {
+              // bonus: highlight the matching part (the names are my own data, so innerHTML is ok here)
+              const before = name.slice(0, index);
+              const match = name.slice(index, index + term.length);
+              const after = name.slice(index + term.length);
+              student.innerHTML = before + '<mark>' + match + '</mark>' + after + ' — ' + major;
+            }
+          } else {
+            student.style.display = 'none';
+          }
+        });
+
+        if (visible === 0) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      });
+    </script>
+  </body>
+</html>
