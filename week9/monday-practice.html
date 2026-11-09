@@ -3,16 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Removed</title>
+    <title>Week 9 Monday - Git Practice</title>
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
     <main class="page-content">
       <nav><a href="../index.html">🏠 Home</a></nav>
       <div class="card-box">
-        <h1>This Week 9 page was removed.</h1>
-        <p>It has been deleted from the portfolio.</p>
+        <h1>Week 9 Monday — Git &amp; Version Control Practice</h1>
+        <p>Complete these three hands-on exercises in order using your own computer and GitHub account.</p>
       </div>
+
+      <section class="card-box">
+        <h2>Exercise 1: Create your first repository</h2>
+        <p><strong>Goal:</strong> Initialize a Git repository, create a file, and make your first commit.</p>
+        <ol>
+          <li>Create a folder named <code>my-first-git</code> and open a terminal in it.</li>
+          <li>Initialize a repository with <code>git init</code>.</li>
+          <li>Create an <code>index.html</code> file containing a simple heading.</li>
+          <li>Run <code>git status</code> and identify the untracked file.</li>
+          <li>Stage the file with <code>git add index.html</code>.</li>
+          <li>Commit it with a descriptive message, for example <code>git commit -m "Add initial HTML page"</code>.</li>
+          <li>Run <code>git log --oneline</code> and confirm your commit appears.</li>
+        </ol>
+      </section>
+
+      <section class="card-box">
+        <h2>Exercise 2: Create and merge a branch</h2>
+        <p><strong>Goal:</strong> Practice making a change on a feature branch and merging it into the main branch.</p>
+        <ol>
+          <li>From your practice repository, create and switch to a branch named <code>feature-style</code>.</li>
+          <li>Create a <code>style.css</code> file with a basic CSS rule.</li>
+          <li>Stage and commit the stylesheet on the feature branch.</li>
+          <li>Switch back to <code>main</code> and observe that the branch's unmerged file is not present.</li>
+          <li>Merge <code>feature-style</code> into <code>main</code>.</li>
+          <li>Confirm <code>style.css</code> is now present on <code>main</code>.</li>
+        </ol>
+      </section>
+
+      <section class="card-box">
+        <h2>Exercise 3: Push your repository to GitHub</h2>
+        <p><strong>Goal:</strong> Publish your practice repository to your own GitHub account.</p>
+        <ol>
+          <li>Create a new empty GitHub repository named <code>git-exercise</code>. Do not initialize it with a README.</li>
+          <li>Connect your local repository using <code>git remote add origin https://github.com/YOUR-USERNAME/git-exercise.git</code>, replacing the placeholder with your username.</li>
+          <li>Check the remote with <code>git remote -v</code>.</li>
+          <li>Push your main branch using <code>git push -u origin main</code>.</li>
+          <li>Open your repository on GitHub and confirm the files and commit are visible.</li>
+        </ol>
+      </section>
     </main>
   </body>
 </html>
